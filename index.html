@@ -7,17 +7,21 @@
   <meta name="description" content="TradeReach handles all your marketing — SEO blog posts, social media content, and Google Business Profile updates — published every week, so UK tradespeople can focus on the work, not the marketing." />
   <meta name="keywords" content="marketing for tradespeople, tradesmen marketing UK, lead generation trades, SEO for tradespeople, social media for builders, plumber marketing, electrician marketing, roofer marketing" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://tradereach.co.uk/" />
+  <link rel="canonical" href="https://tradereach.io/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="TradeReach | More Leads. More Jobs. Zero Marketing Effort." />
   <meta property="og:description" content="Done-for-you marketing for UK tradespeople. SEO blogs, social media, and Google Business Profile — handled for you every month." />
-  <meta property="og:url" content="https://tradereach.co.uk/" />
+  <meta property="og:url" content="https://tradereach.io/" />
   <meta property="og:site_name" content="TradeReach" />
-  <meta property="og:image" content="https://placehold.co/1200x630/FF4E00/FFFFFF?text=TradeReach" />
+  <meta property="og:image" content="https://tradereach.io/Website/Images/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://placehold.co/1200x630/FF4E00/FFFFFF?text=TradeReach" />
+  <meta name="twitter:image" content="https://tradereach.io/Website/Images/og-image.png" />
+
+  <link rel="icon" type="image/svg+xml" href="/Website/Icons/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/Website/Icons/favicon.svg" />
+  <link rel="apple-touch-icon" href="/Website/Icons/favicon.svg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,7 +33,7 @@
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness"],
     "name": "TradeReach",
-    "url": "https://tradereach.co.uk",
+    "url": "https://tradereach.io",
     "description": "Done-for-you marketing for UK tradespeople. SEO blogs, social media, and Google Business Profile — handled every month.",
     "areaServed": "GB",
     "priceRange": "£89-£399",
@@ -1260,14 +1264,38 @@ function toggleStep(id) {
 }
 
 // ─── Form submit
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
   const form = document.getElementById('cform');
   const ok = document.getElementById('form-ok');
   if (!form['name'].value.trim() || !form['trade'].value || !form['phone'].value.trim() || !form['email'].value.trim()) return;
+
   form.style.opacity = '0.5';
   form.style.pointerEvents = 'none';
-  setTimeout(() => { form.style.display = 'none'; ok.style.display = 'block'; }, 700);
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: form['name'].value.trim(),
+        trade: form['trade'].value,
+        phone: form['phone'].value.trim(),
+        email: form['email'].value.trim(),
+      }),
+    });
+
+    if (res.ok) {
+      form.style.display = 'none';
+      ok.style.display = 'block';
+    } else {
+      throw new Error('Server error');
+    }
+  } catch {
+    form.style.opacity = '1';
+    form.style.pointerEvents = 'auto';
+    alert('Something went wrong — please try again or call us directly.');
+  }
 }
 
 // ─── Sticky mobile CTA
