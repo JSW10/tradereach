@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Fuze Electrical | Certified Electricians in Somerset</title>
+  <meta name="description" content="Professional electrical services across Somerset and the South West. Domestic rewires, EV charger installations, consumer unit upgrades and EICR testing. Call 07850 280552 for a free quote.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* === TOKENS === */
+    :root {
+      --green-deep:  #152b1e;
+      --green:       #1e4430;
+      --green-hover: #2b5e42;
+      --copper:      #c47a1e;
+      --copper-lt:   #d4913b;
+      --white:       #ffffff;
+      --ink:         #171c1e;
+      --muted:       #5c6870;
+      --border:      #d8e4db;
+      --surface:     #f4f8f5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Barlow", system-ui, sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* === REVEAL === */
+    .reveal {
+      transition:
+        opacity  0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.will-hide { opacity: 0; transform: translateY(28px); }
+    .reveal.will-hide.in-view { opacity: 1; transform: translateY(0); }
+
+    .d1 { transition-delay: 0ms; }
+    .d2 { transition-delay: 90ms; }
+    .d3 { transition-delay: 180ms; }
+    .d4 { transition-delay: 270ms; }
+    .d5 { transition-delay: 360ms; }
+    .d6 { transition-delay: 450ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none !important; }
+      .reveal.will-hide { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* === NAV === */
+    #nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      height: 68px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.25s ease;
+    }
+    #nav.lifted {
+      box-shadow: 0 2px 16px rgba(21,43,30,0.09);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img {
+      height: 38px;
+      width: auto;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-tel {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .nav-tel:hover { color: var(--green); }
+
+    /* === BUTTONS === */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .btn:active { transform: translateY(0) scale(0.98) !important; }
+
+    .btn-green {
+      background: var(--green);
+      color: #fff;
+      font-size: 0.88rem;
+      padding: 10px 22px;
+      box-shadow: 0 2px 8px rgba(30,68,48,0.22), 0 6px 18px rgba(30,68,48,0.14);
+    }
+    .btn-green:hover {
+      background: var(--green-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(30,68,48,0.28), 0 10px 28px rgba(30,68,48,0.16);
+    }
+
+    .btn-copper {
+      background: var(--copper);
+      color: #fff;
+      font-size: 1.05rem;
+      padding: 15px 34px;
+      box-shadow: 0 2px 10px rgba(196,122,30,0.28), 0 8px 24px rgba(196,122,30,0.18);
+    }
+    .btn-copper:hover {
+      background: var(--copper-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(196,122,30,0.34), 0 12px 32px rgba(196,122,30,0.22);
+    }
+    .btn-copper-sm {
+      background: var(--copper);
+      color: #fff;
+      font-size: 0.88rem;
+      padding: 11px 24px;
+      box-shadow: 0 2px 8px rgba(196,122,30,0.25), 0 6px 16px rgba(196,122,30,0.14);
+    }
+    .btn-copper-sm:hover {
+      background: var(--copper-lt);
+      transform: translateY(-1px);
+    }
+
+    /* === HERO === */
+    #hero {
+      display: grid;
+      grid-template-columns: 54fr 46fr;
+      min-height: 100dvh;
+      padding-top: 68px;
+    }
+    .hero-left {
+      background: var(--green-deep);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 72px 80px 48px;
+    }
+    .hero-kicker {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 22px;
+    }
+    .hero-h1 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 4.8vw, 5.2rem);
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.68);
+      max-width: 46ch;
+      margin-bottom: 40px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .hero-alt {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .hero-alt:hover { color: rgba(255,255,255,0.9); }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(21,43,30,0.28) 0%, transparent 45%);
+    }
+
+    /* === SERVICES === */
+    #services {
+      padding: 104px 0;
+      background: var(--white);
+    }
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .services-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .services-intro h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      line-height: 1.08;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .services-intro p {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+    .service-list { list-style: none; padding: 0; }
+    .service-row {
+      border-top: 1px solid var(--border);
+      padding: 22px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+    .service-row:last-child { border-bottom: 1px solid var(--border); }
+    .svc-name {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+    }
+    .svc-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* === ABOUT === */
+    #about {
+      padding: 104px 0;
+      background: var(--surface);
+    }
+    .about-layout {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-img {
+      aspect-ratio: 4 / 3;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .about-img:hover img { transform: scale(1.03); }
+    .about-text h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 2.8vw, 2.8rem);
+      line-height: 1.08;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .about-text p {
+      font-size: 0.97rem;
+      line-height: 1.78;
+      color: var(--muted);
+      max-width: 50ch;
+      margin-bottom: 18px;
+    }
+    .about-text .btn-green { margin-top: 16px; }
+
+    /* === PROJECTS === */
+    #projects {
+      padding: 104px 0;
+      background: var(--white);
+    }
+    .projects-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .projects-head h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.05;
+      color: var(--ink);
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .project-tile {}
+    .project-photo {
+      aspect-ratio: 4 / 3;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .project-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .project-tile:hover .project-photo img { transform: scale(1.05); }
+    .project-caption {
+      padding: 14px 0 0;
+    }
+    .project-loc {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 3px;
+    }
+    .project-label {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    /* === CTA SECTION === */
+    #contact {
+      background: var(--green-deep);
+      padding: 96px 0;
+    }
+    .contact-layout {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 64px;
+      align-items: center;
+    }
+    .contact-text h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      line-height: 1.04;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+    .contact-text p {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.6);
+      max-width: 46ch;
+    }
+    .contact-right {
+      text-align: right;
+    }
+    .contact-phone {
+      display: block;
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+      letter-spacing: 0.02em;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.15s ease;
+    }
+    .contact-phone:hover { color: var(--copper-lt); }
+    .contact-email {
+      display: block;
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      margin-bottom: 28px;
+      transition: color 0.15s ease;
+    }
+    .contact-email:hover { color: rgba(255,255,255,0.85); }
+
+    /* === FOOTER === */
+    #footer {
+      background: var(--ink);
+      padding: 56px 0 36px;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 28px;
+    }
+    .footer-logo img {
+      height: 36px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.7;
+      margin-bottom: 14px;
+    }
+    .footer-tagline {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.38);
+    }
+    .footer-col-head {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 16px;
+    }
+    .footer-col a,
+    .footer-col p {
+      display: block;
+      font-size: 0.9rem;
+      line-height: 1.95;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-base {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.28);
+      line-height: 1.7;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .services-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .contact-right { text-align: left; }
+      .footer-cols { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      #hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-left {
+        padding: 60px 24px;
+        min-height: 72dvh;
+      }
+      .hero-right {
+        height: 44dvh;
+        position: relative;
+      }
+      .hero-right img { position: absolute; }
+      .hero-sub { max-width: 100%; }
+      .wrap { padding: 0 24px; }
+      #services, #about, #projects { padding: 80px 0; }
+      .service-row {
+        flex-direction: column;
+        gap: 3px;
+      }
+      .svc-note { text-align: left; }
+      .projects-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .contact-layout { padding: 0 24px; }
+      .footer-inner { padding: 0 24px; }
+      .footer-cols { grid-template-columns: 1fr; gap: 32px; }
+      .nav-inner { padding: 0 24px; }
+      .nav-tel { font-size: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .btn-copper { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Fuze Electrical home">
+        <img src="https://images.squarespace-cdn.com/content/v1/673bb3094ac49d59cf361524/bc028ac0-e8db-423f-a7c6-fbbecf47f0f1/Original+Logo+Symbol.png"
+             alt="Fuze Electrical">
+      </a>
+      <div class="nav-right">
+        <a href="tel:07850280552" class="nav-tel">07850 280552</a>
+        <a href="mailto:dominic@fuzeelectrical.co.uk" class="btn btn-green">Free Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-left">
+      <p class="hero-kicker">Certified Electricians &middot; Somerset</p>
+      <h1 class="hero-h1">Precision Electrical Work, Done Right.</h1>
+      <p class="hero-sub">Domestic rewires, EV charger installations, consumer unit upgrades and EICR testing across Bridgwater, Taunton, Weston-super-Mare and beyond.</p>
+      <div class="hero-actions">
+        <a href="tel:07850280552" class="btn btn-copper">Call 07850 280552</a>
+        <a href="mailto:dominic@fuzeelectrical.co.uk" class="hero-alt">or email us</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="https://images.squarespace-cdn.com/content/v1/673bb3094ac49d59cf361524/f49f8a4f-f22a-421f-b161-ef043c26efbc/IMG_9317.PNG"
+           alt="Fuze Electrical - professional electrical installations in Somerset"
+           loading="eager">
+      <div class="hero-scrim" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" aria-labelledby="services-heading">
+    <div class="wrap">
+      <div class="services-layout">
+        <div class="services-intro reveal d1">
+          <h2 id="services-heading">Everything Electrical, Handled Properly.</h2>
+          <p>Fully qualified and insured. Every job certified and completed to the highest standard, for homes and businesses across Somerset and the South West.</p>
+        </div>
+        <ul class="service-list" role="list">
+          <li class="service-row reveal d1">
+            <span class="svc-name">Full &amp; Partial Rewires</span>
+            <span class="svc-note">All property sizes and ages</span>
+          </li>
+          <li class="service-row reveal d2">
+            <span class="svc-name">Consumer Unit Upgrades</span>
+            <span class="svc-note">Safe, certified and compliant</span>
+          </li>
+          <li class="service-row reveal d3">
+            <span class="svc-name">EV Charger Installations</span>
+            <span class="svc-note">Home and business charging points</span>
+          </li>
+          <li class="service-row reveal d4">
+            <span class="svc-name">EICR Testing &amp; Inspections</span>
+            <span class="svc-note">Domestic, commercial and industrial</span>
+          </li>
+          <li class="service-row reveal d5">
+            <span class="svc-name">Fault Finding &amp; Repairs</span>
+            <span class="svc-note">Emergency call-outs available</span>
+          </li>
+          <li class="service-row reveal d6">
+            <span class="svc-name">Commercial &amp; Industrial</span>
+            <span class="svc-note">From offices to large-scale projects</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="wrap">
+      <div class="about-layout">
+        <div class="about-img reveal d1">
+          <img src="https://images.squarespace-cdn.com/content/v1/673bb3094ac49d59cf361524/f4bfb957-4b5b-4d4a-a559-fbff46d11e79/tempImageJqCRPK.jpg"
+               alt="Commercial electrical installation by Fuze Electrical"
+               loading="eager">
+        </div>
+        <div class="about-text reveal d2">
+          <h2 id="about-heading">Qualified. Local. Reliable.</h2>
+          <p>Fuze Electrical provides professional electrical services for homes and businesses across Somerset and the South West. From a quick repair to a full commercial installation, every job is completed to the same high standard.</p>
+          <p>Whether it's a partial rewire in Bridgwater, an EV charger in Taunton, or a large-scale commercial project, you get clear communication, tidy work and a certified finish from quote to completion.</p>
+          <a href="mailto:dominic@fuzeelectrical.co.uk" class="btn btn-green">Free Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT WORK -->
+  <section id="projects" aria-labelledby="projects-heading">
+    <div class="wrap">
+      <div class="projects-head">
+        <h2 id="projects-heading" class="reveal d1">Recent Work</h2>
+      </div>
+      <div class="project-grid">
+        <article class="project-tile reveal d1">
+          <div class="project-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/673bb3094ac49d59cf361524/f4bfb957-4b5b-4d4a-a559-fbff46d11e79/tempImageJqCRPK.jpg"
+                 alt="Commercial electrical installation at Southampton University"
+                 loading="eager">
+          </div>
+          <div class="project-caption">
+            <p class="project-loc">Southampton University</p>
+            <p class="project-label">Commercial Installation</p>
+          </div>
+        </article>
+        <article class="project-tile reveal d2">
+          <div class="project-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/673bb3094ac49d59cf361524/9e20e42b-848f-4b79-8083-7fea8cecfff5/IMG_5699.jpg"
+                 alt="EICR electrical inspection and testing by Fuze Electrical"
+                 loading="eager">
+          </div>
+          <div class="project-caption">
+            <p class="project-loc">Somerset</p>
+            <p class="project-label">EICR Inspection &amp; Testing</p>
+          </div>
+        </article>
+        <article class="project-tile reveal d3">
+          <div class="project-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/673bb3094ac49d59cf361524/f49f8a4f-f22a-421f-b161-ef043c26efbc/IMG_9317.PNG"
+                 alt="Outdoor lighting installation, Bridgwater Somerset"
+                 loading="eager">
+          </div>
+          <div class="project-caption">
+            <p class="project-loc">Bridgwater, Somerset</p>
+            <p class="project-label">Outdoor Lighting Installation</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / CTA -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <div class="contact-layout">
+      <div class="contact-text reveal d1">
+        <h2 id="contact-heading">Ready to book?</h2>
+        <p>Free quotes with no obligation. Call now or send a message and we'll get back to you the same day.</p>
+      </div>
+      <div class="contact-right reveal d2">
+        <a href="tel:07850280552" class="contact-phone">07850 280552</a>
+        <a href="mailto:dominic@fuzeelectrical.co.uk" class="contact-email">dominic@fuzeelectrical.co.uk</a>
+        <a href="mailto:dominic@fuzeelectrical.co.uk" class="btn btn-copper-sm">Free Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-cols">
+        <div>
+          <div class="footer-logo">
+            <img src="https://images.squarespace-cdn.com/content/v1/673bb3094ac49d59cf361524/bc028ac0-e8db-423f-a7c6-fbbecf47f0f1/Original+Logo+Symbol.png"
+                 alt="Fuze Electrical">
+          </div>
+          <p class="footer-tagline">Professional electrical services<br>across Somerset &amp; the South West.</p>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Contact</p>
+          <a href="tel:07850280552">07850 280552</a>
+          <a href="mailto:dominic@fuzeelectrical.co.uk">dominic@fuzeelectrical.co.uk</a>
+          <a href="http://www.instagram.com/fuze_electrical" target="_blank" rel="noopener">Instagram</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Areas Covered</p>
+          <p>Bridgwater</p>
+          <p>Taunton</p>
+          <p>Weston-super-Mare</p>
+          <p>Somerset &amp; South West</p>
+        </div>
+      </div>
+      <p class="footer-base">
+        Fuze Electrical &middot; dominic@fuzeelectrical.co.uk
+        <br>
+        <em>This is a temporary demo site created by TradeReach. It is not a live business website and will be deleted within 30 days.</em>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Nav lift on scroll - IntersectionObserver, no scroll listener
+    const sentinel = document.createElement('div');
+    sentinel.style.cssText = 'position:absolute;top:70px;left:0;height:1px;width:1px;pointer-events:none;';
+    document.body.prepend(sentinel);
+    const nav = document.getElementById('nav');
+    const navObs = new IntersectionObserver(([e]) => {
+      nav.classList.toggle('lifted', !e.isIntersecting);
+    });
+    navObs.observe(sentinel);
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    revealEls.forEach(el => el.classList.add('will-hide'));
+
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
+
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // Safety net: reveal any elements that missed the IO (e.g. bottom of page on fast load)
+    setTimeout(() => {
+      document.querySelectorAll('.reveal.will-hide').forEach(el => el.classList.add('in-view'));
+    }, 800);
+  </script>
+
+</body>
+</html>
